@@ -1,6 +1,5 @@
-package com.qu3dena.lawconnect.android.ui.theme
+package com.qu3dena.lawconnect.android.core.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

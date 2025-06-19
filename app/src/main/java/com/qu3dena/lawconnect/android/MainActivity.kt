@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.qu3dena.lawconnect.android.ui.theme.LawConnectAndroidTheme
+import com.qu3dena.lawconnect.android.core.ui.theme.LawConnectAndroidTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
