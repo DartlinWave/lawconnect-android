@@ -2,13 +2,20 @@ package com.qu3dena.lawconnect.android.auth.presentation.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.qu3dena.lawconnect.android.core.ui.components.CustomButton
+import coil3.compose.AsyncImage
+import com.qu3dena.lawconnect.android.core.ui.components.BrownActionButton
 import com.qu3dena.lawconnect.android.core.ui.components.CustomTextField
+import com.qu3dena.lawconnect.android.core.ui.components.GrayActionButton
 
 @Composable
 fun SignUpStep1View(
@@ -22,26 +29,44 @@ fun SignUpStep1View(
 ) {
     val enabled = password.isNotBlank() && password == confirmPass
 
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        CustomTextField(
-            value = username,
-            onValueChange = onUsernameChange,
-            placeholder = "Username"
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(35.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        AsyncImage(
+            model = "https://raw.githubusercontent.com/DartlinWave/lawconnect-report/refs/heads/main/assets/images/chapter-V/LogoLawConnect.png",
+            contentDescription = "LawConnect Logo",
+            modifier = Modifier.scale(0.75f)
         )
-        CustomTextField(
-            value = password,
-            onValueChange = onPasswordChange,
-            placeholder = "Password"
-        )
-        CustomTextField(
-            value = confirmPass,
-            onValueChange = onConfirmPassChange,
-            placeholder = "Confirm Password"
-        )
-        CustomButton(
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            CustomTextField(
+                value = username,
+                onValueChange = onUsernameChange,
+                placeholder = "Username"
+            )
+            CustomTextField(
+                value = password,
+                onValueChange = onPasswordChange,
+                placeholder = "Password"
+            )
+            CustomTextField(
+                value = confirmPass,
+                onValueChange = onConfirmPassChange,
+                placeholder = "Confirm Password"
+            )
+        }
+
+        Spacer(modifier = Modifier.padding(vertical = 8.dp))
+
+        BrownActionButton(
             text           = "Next",
             onClick        = onNext,
-            backgroundColor= if (enabled) Color(0xFF6200EE) else Color.Gray,
             contentColor   = Color.White,
             modifier       = Modifier.fillMaxWidth(),
             enabled        = enabled

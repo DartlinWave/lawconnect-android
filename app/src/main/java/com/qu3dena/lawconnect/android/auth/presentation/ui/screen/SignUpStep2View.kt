@@ -2,18 +2,23 @@ package com.qu3dena.lawconnect.android.auth.presentation.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.qu3dena.lawconnect.android.auth.data.source.local.SPECIALTY_MAP
 import com.qu3dena.lawconnect.android.auth.presentation.ui.viewmodel.SignUpUiState
-import com.qu3dena.lawconnect.android.core.ui.components.CustomButton
+import com.qu3dena.lawconnect.android.core.ui.components.BrownActionButton
 import com.qu3dena.lawconnect.android.core.ui.components.CustomTextField
+import com.qu3dena.lawconnect.android.core.ui.components.DarkBrownActionButton
 import com.qu3dena.lawconnect.android.core.ui.components.SelectableChipGroup
 
 @Composable
@@ -44,43 +49,54 @@ fun SignUpStep2View(
     }
 
     Column(
-        Modifier
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(35.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CustomTextField(
-            value = firstName,
-            onValueChange = onFirstNameChange,
-            placeholder = "First Name"
-        )
-        CustomTextField(
-            value = lastName,
-            onValueChange = onLastNameChange,
-            placeholder = "Last Name"
-        )
-        CustomTextField(
-            value = description,
-            onValueChange = onDescriptionChange,
-            placeholder = "Professional description"
+        AsyncImage(
+            model = "https://raw.githubusercontent.com/DartlinWave/lawconnect-report/refs/heads/main/assets/images/chapter-V/LogoLawConnect.png",
+            contentDescription = "LawConnect Logo",
+            modifier = Modifier.scale(0.75f)
         )
 
-        LazyRow {
-            item {
-                SelectableChipGroup(
-                    items = SPECIALTY_MAP.values.toList(),
-                    selectedItems = specialties,
-                    onSelectionChanged = onSpecialtiesChange
-                )
-            }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            CustomTextField(
+                value = firstName,
+                onValueChange = onFirstNameChange,
+                placeholder = "First Name"
+            )
+            CustomTextField(
+                value = lastName,
+                onValueChange = onLastNameChange,
+                placeholder = "Last Name"
+            )
+            CustomTextField(
+                value = description,
+                onValueChange = onDescriptionChange,
+                placeholder = "Professional description"
+            )
         }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            CustomButton(
+        Spacer(modifier = Modifier.padding(vertical = 8.dp))
+
+        SpecialtyGallery(
+            specialties = specialties,
+            onSpecialtiesChange = onSpecialtiesChange
+        )
+
+        Spacer(modifier = Modifier.padding(vertical = 8.dp))
+
+        Column (verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            BrownActionButton(
                 text = "Back",
                 onClick = onBackClick,
                 modifier = Modifier.weight(1f)
             )
-            CustomButton(
+            DarkBrownActionButton(
                 text = if (uiState == SignUpUiState.Loading) "Signing…" else "Sign Up",
                 onClick = onSignUpClick,
                 modifier = Modifier.weight(1f),
@@ -88,7 +104,22 @@ fun SignUpStep2View(
             )
         }
 
-
         SnackbarHost(hostState = snackBarState)
+    }
+}
+
+@Composable
+fun SpecialtyGallery(
+    specialties: List<String>,
+    onSpecialtiesChange: (List<String>) -> Unit
+) {
+    LazyRow {
+        item {
+            SelectableChipGroup(
+                items = SPECIALTY_MAP.values.toList(),
+                selectedItems = specialties,
+                onSelectionChanged = onSpecialtiesChange
+            )
+        }
     }
 }

@@ -38,6 +38,9 @@ fun NavGraphBuilder.authNavGraph(
             SignInView(
                 onSignUpClick = {
                     navController.navigate(AuthScreen.SignUp.route)
+                },
+                onSignInClick = { username, password ->
+                    /*TODO: */
                 }
             )
         }
