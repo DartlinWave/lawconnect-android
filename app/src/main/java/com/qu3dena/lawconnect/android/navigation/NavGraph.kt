@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.navigation
+package com.qu3dena.lawconnect.android.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable

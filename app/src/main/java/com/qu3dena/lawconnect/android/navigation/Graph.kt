@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.navigation
+package com.qu3dena.lawconnect.android.navigation
 
 /**
  * Represents a navigation graph.

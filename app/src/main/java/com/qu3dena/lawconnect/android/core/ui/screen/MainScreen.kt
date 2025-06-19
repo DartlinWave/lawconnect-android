@@ -23,8 +23,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.qu3dena.lawconnect.android.core.navigation.Graph
-import com.qu3dena.lawconnect.android.core.navigation.SetupNavGraph
+import com.qu3dena.lawconnect.android.navigation.Graph
+import com.qu3dena.lawconnect.android.navigation.SetupNavGraph
 
 @Composable
 fun MainScreen() {
