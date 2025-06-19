@@ -21,13 +21,18 @@ fun CustomButton(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.LightGray,
     contentColor: Color = Color.Black,
+    enabled: Boolean = true,
     borderRadius: Dp = 16.dp,
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Normal
 ) {
     Button(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor, contentColor = contentColor),
+        enabled = enabled,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = backgroundColor,
+            contentColor = contentColor
+        ),
         shape = RoundedCornerShape(borderRadius),
         modifier = modifier
     ) {
@@ -43,6 +48,7 @@ private fun CustomButtonPreview() {
         onClick = {},
         backgroundColor = Color.Blue,
         contentColor = Color.White,
+        enabled = true,
         borderRadius = 8.dp,
         fontSize = 18.sp,
         fontWeight = FontWeight.Bold
