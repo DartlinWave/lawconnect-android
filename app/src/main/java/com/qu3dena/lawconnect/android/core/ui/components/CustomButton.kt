@@ -1,5 +1,7 @@
 package com.qu3dena.lawconnect.android.core.ui.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -15,7 +17,120 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomButton(
+fun GreenActionButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    contentColor: Color = Color.White,
+    enabled: Boolean = true,
+) {
+    ActionButton(
+        modifier = modifier,
+        text = text,
+        onClick = onClick,
+        backgroundColor = if (enabled) Color(0xFF4CAF50) else Color.Gray,
+        contentColor = contentColor,
+        enabled = enabled,
+    )
+}
+
+@Composable
+fun BrownActionButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    contentColor: Color = Color.White,
+    enabled: Boolean = true,
+) {
+    ActionButton(
+        modifier = modifier,
+        text = text,
+        onClick = onClick,
+        backgroundColor = if (enabled) Color(0xFFA52A2A) else Color.Gray,
+        contentColor = contentColor,
+        enabled = enabled,
+    )
+}
+
+@Composable
+fun DarkBrownActionButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    contentColor: Color = Color.White,
+    enabled: Boolean = true
+) {
+    ActionButton(
+        modifier = modifier,
+        text = text,
+        onClick = onClick,
+        backgroundColor = if (enabled) Color(0xFF5C4033) else Color.Gray,
+        contentColor = contentColor,
+        enabled = enabled,
+    )
+}
+
+@Composable
+fun RedActionButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    contentColor: Color = Color.White,
+    enabled: Boolean = true,
+) {
+    ActionButton(
+        modifier = modifier,
+        text = text,
+        onClick = onClick,
+        backgroundColor = if (enabled) Color(0xFFF44336) else Color.Gray,
+        contentColor = contentColor,
+        enabled = enabled,
+    )
+}
+
+@Composable
+fun GrayActionButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    contentColor: Color = Color.Black,
+    enabled: Boolean = true,
+) {
+    ActionButton(
+        modifier = modifier,
+        text = text,
+        onClick = onClick,
+        backgroundColor = if (enabled) Color(0xFF9E9E9E) else Color.Gray ,
+        contentColor = contentColor,
+        enabled = enabled,
+    )
+}
+
+
+@Composable
+private fun ActionButton (
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    backgroundColor: Color = Color.LightGray,
+    contentColor: Color = Color.Black,
+    enabled: Boolean = true,
+) {
+    CustomButton(
+        text = text,
+        onClick = onClick,
+        backgroundColor = backgroundColor,
+        contentColor = contentColor,
+        enabled = enabled,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(45.dp),
+        borderRadius = 10.dp
+    )
+}
+
+@Composable
+private fun CustomButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
