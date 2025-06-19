@@ -1,5 +1,6 @@
 package com.qu3dena.lawconnect.android.core.ui.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -18,7 +19,7 @@ import androidx.compose.ui.unit.sp
 fun CustomTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.fillMaxWidth(),
     placeholder: String = "",
     textColor: Color = Color.Black,
     borderColor: Color = Color.Gray,
