@@ -15,7 +15,7 @@ sealed class Screen(val route: String) {
 fun NavGraphBuilder.profileNavGraph(
     route: String,
     navController: NavHostController,
-    authViewModel: AuthViewModel
+    onSignOut: () -> Unit,
 ) {
     navigation(
         route = route,
@@ -24,16 +24,7 @@ fun NavGraphBuilder.profileNavGraph(
         composable(Screen.Main.route) {
 
             ProfileView (
-                onSignOut = {
-                    // 1) limpiamos sesión
-                    authViewModel.signOut()
-
-                    // 2) navegamos de vuelta al auth_graph
-                    navController.navigate(Graph.Auth.route) {
-                        popUpTo(Graph.Root.route) { inclusive = true }
-                        launchSingleTop = true
-                    }
-                }
+                onSignOut = onSignOut
             )
         }
     }

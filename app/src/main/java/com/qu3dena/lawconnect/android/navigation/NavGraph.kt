@@ -25,7 +25,6 @@ fun SetupNavGraph(
             route = Graph.Auth.route,
             navController = navController,
             onLoginSuccess = {
-
                 navController.navigate(Graph.Home.route) {
                     popUpTo(Graph.Auth.route) { inclusive = true }
                     launchSingleTop = true
@@ -41,7 +40,13 @@ fun SetupNavGraph(
         profileNavGraph(
             route = Graph.Profile.route,
             navController = navController,
-            authViewModel = authViewModel
+            onSignOut = {
+                authViewModel.signOut()
+                navController.navigate(Graph.Auth.route) {
+                    popUpTo(Graph.Root.route) { inclusive = true }
+                    launchSingleTop = true
+                }
+            }
         )
     }
 }

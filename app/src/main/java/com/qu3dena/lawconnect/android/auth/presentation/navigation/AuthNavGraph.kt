@@ -39,12 +39,7 @@ fun NavGraphBuilder.authNavGraph(
         // --- SIGN IN ---
         composable(AuthScreen.SignIn.route) {
             SignInView(
-                onSuccess = {
-                    navController.navigate(Graph.Home.route) {
-                        popUpTo(route) { inclusive = true }
-                        launchSingleTop = true
-                    }
-                },
+                onSuccess = onLoginSuccess,
                 onSignUpClick = {
                     navController.navigate(AuthScreen.SignUp.route)
                 }
