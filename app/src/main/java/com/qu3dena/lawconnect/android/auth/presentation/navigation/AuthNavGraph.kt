@@ -13,8 +13,9 @@ import androidx.navigation.navigation
 import com.qu3dena.lawconnect.android.auth.presentation.ui.screen.SignInView
 import com.qu3dena.lawconnect.android.auth.presentation.ui.screen.SignUpStep1View
 import com.qu3dena.lawconnect.android.auth.presentation.ui.screen.SignUpStep2View
-import com.qu3dena.lawconnect.android.auth.presentation.ui.viewmodel.SignUpUiState
 import com.qu3dena.lawconnect.android.auth.presentation.ui.viewmodel.SignUpViewModel
+import com.qu3dena.lawconnect.android.home.presentation.navigation.homeNavGraph
+import com.qu3dena.lawconnect.android.navigation.Graph
 
 sealed class AuthScreen(val route: String) {
     object SignIn : AuthScreen("sign_in")
@@ -27,20 +28,25 @@ sealed class SignUpStep(val route: String) {
 }
 
 fun NavGraphBuilder.authNavGraph(
+    navController: NavHostController,
     route: String,
-    navController: NavHostController
+    onLoginSuccess: () -> Unit
 ) {
     navigation(
         route = route,
         startDestination = AuthScreen.SignIn.route
     ) {
+        // --- SIGN IN ---
         composable(AuthScreen.SignIn.route) {
             SignInView(
+                onSuccess = {
+                    navController.navigate(Graph.Home.route) {
+                        popUpTo(route) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
                 onSignUpClick = {
                     navController.navigate(AuthScreen.SignUp.route)
-                },
-                onSignInClick = { username, password ->
-                    /*TODO: */
                 }
             )
         }

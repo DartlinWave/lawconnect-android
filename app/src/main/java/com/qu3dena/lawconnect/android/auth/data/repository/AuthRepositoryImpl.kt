@@ -2,7 +2,6 @@ package com.qu3dena.lawconnect.android.auth.data.repository
 
 import com.qu3dena.lawconnect.android.auth.data.model.SignInRequestDto
 import com.qu3dena.lawconnect.android.auth.data.model.SignUpRequestDto
-import com.qu3dena.lawconnect.android.auth.data.model.SignUpResponseDto
 import com.qu3dena.lawconnect.android.auth.data.source.local.AuthPreferences
 import com.qu3dena.lawconnect.android.auth.data.source.remote.AuthApiService
 import com.qu3dena.lawconnect.android.auth.domain.model.SignInResponse
@@ -31,4 +30,12 @@ class AuthRepositoryImpl @Inject constructor(
         authPreferences.saveToken(response.token)
         emit(response.toSignInResponse())
     }.flowOn(Dispatchers.IO)
+
+    override fun signOut(): Flow<Unit> = flow {
+        authPreferences.clearToken()
+        emit(Unit)
+    }.flowOn(Dispatchers.IO)
+
+    override fun getTokenFlow(): Flow<String?> =
+        authPreferences.tokenFlow
 }

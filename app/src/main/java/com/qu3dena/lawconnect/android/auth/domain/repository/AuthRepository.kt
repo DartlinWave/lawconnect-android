@@ -9,4 +9,8 @@ interface AuthRepository {
     fun signUp(username: String, password: String, role: String): Flow<SignUpResponse>
 
     fun signIn(username: String, password: String): Flow<SignInResponse>
+
+    fun getTokenFlow(): Flow<String?>
+
+    fun signOut(): Flow<Unit>
 }

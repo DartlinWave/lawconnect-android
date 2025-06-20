@@ -2,6 +2,8 @@ package com.qu3dena.lawconnect.android.auth.data.source.local
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 class AuthPreferences @Inject constructor(
@@ -9,11 +11,16 @@ class AuthPreferences @Inject constructor(
 ) {
     private val prefs = context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
 
+    private val _tokenFlow = MutableStateFlow(prefs.getString("auth_token", null))
+    val tokenFlow: StateFlow<String?> = _tokenFlow
+
     fun saveToken(token: String) {
         prefs.edit().putString("auth_token", token).apply()
+        _tokenFlow.value = token
     }
 
-    fun getToken(): String? {
-        return prefs.getString("auth_token", null)
+    fun clearToken() {
+        prefs.edit().remove("auth_token").apply()
+        _tokenFlow.value = null
     }
 }

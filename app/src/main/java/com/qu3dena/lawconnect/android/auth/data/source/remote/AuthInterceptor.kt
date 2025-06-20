@@ -1,6 +1,8 @@
 package com.qu3dena.lawconnect.android.auth.data.source.remote
 
 import com.qu3dena.lawconnect.android.auth.data.source.local.AuthPreferences
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
@@ -10,13 +12,15 @@ class AuthInterceptor @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = authPreferences.getToken()
-        val requestBuilder = chain.request().newBuilder()
-
-        token?.let {
-            requestBuilder.addHeader("Authorization", "Bearer $it")
+        // We are blocking until we get the token from the flow
+        val token: String? = runBlocking {
+            authPreferences.tokenFlow.first()
         }
 
-        return chain.proceed(requestBuilder.build())
+        val request = chain.request().newBuilder().apply {
+            token?.let { addHeader("Authorization", "Bearer $it") }
+        }.build()
+
+        return chain.proceed(request)
     }
 }

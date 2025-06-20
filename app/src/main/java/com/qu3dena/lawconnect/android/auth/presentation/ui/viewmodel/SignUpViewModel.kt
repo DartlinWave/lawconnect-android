@@ -14,13 +14,6 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
 
-sealed class SignUpUiState {
-    object Idle : SignUpUiState()
-    object Loading : SignUpUiState()
-    object Success : SignUpUiState()
-    data class Error(val message: String) : SignUpUiState()
-}
-
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
@@ -67,4 +60,11 @@ class SignUpViewModel @Inject constructor(
     fun resetState() {
         _uiState.value = SignUpUiState.Idle
     }
+}
+
+sealed class SignUpUiState {
+    object Idle : SignUpUiState()
+    object Loading : SignUpUiState()
+    object Success : SignUpUiState()
+    data class Error(val message: String) : SignUpUiState()
 }
