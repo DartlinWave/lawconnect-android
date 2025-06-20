@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.auth.data.source.local
+package com.qu3dena.lawconnect.android.auth.data.di
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext

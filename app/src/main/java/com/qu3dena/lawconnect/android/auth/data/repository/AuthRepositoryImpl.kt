@@ -2,7 +2,7 @@ package com.qu3dena.lawconnect.android.auth.data.repository
 
 import com.qu3dena.lawconnect.android.auth.data.model.SignInRequestDto
 import com.qu3dena.lawconnect.android.auth.data.model.SignUpRequestDto
-import com.qu3dena.lawconnect.android.auth.data.source.local.AuthPreferences
+import com.qu3dena.lawconnect.android.auth.data.di.AuthPreferences
 import com.qu3dena.lawconnect.android.auth.data.source.remote.AuthApiService
 import com.qu3dena.lawconnect.android.auth.domain.model.SignInResponse
 import com.qu3dena.lawconnect.android.auth.domain.model.SignUpResponse

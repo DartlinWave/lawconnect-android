@@ -1,6 +1,6 @@
 package com.qu3dena.lawconnect.android.auth.data.source.remote
 
-import com.qu3dena.lawconnect.android.auth.data.source.local.AuthPreferences
+import com.qu3dena.lawconnect.android.auth.data.di.AuthPreferences
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
