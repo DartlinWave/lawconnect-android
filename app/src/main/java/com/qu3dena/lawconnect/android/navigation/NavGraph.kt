@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.qu3dena.lawconnect.android.auth.presentation.navigation.authNavGraph
 import com.qu3dena.lawconnect.android.auth.presentation.ui.viewmodel.AuthViewModel
+import com.qu3dena.lawconnect.android.clients.presentation.navigation.clientsNavGraph
 import com.qu3dena.lawconnect.android.home.presentation.navigation.homeNavGraph
 import com.qu3dena.lawconnect.android.profile.presentation.navigation.profileNavGraph
 
@@ -34,6 +35,11 @@ fun SetupNavGraph(
 
         homeNavGraph(
             route = Graph.Home.route,
+            navController = navController
+        )
+
+        clientsNavGraph(
+            route = Graph.Clients.route,
             navController = navController
         )
 

@@ -35,5 +35,5 @@ sealed class Graph(val route: String) {
     /**
      * Client section navigation graph.
      */
-    object Client : Graph("client_graph")
+    object Clients : Graph("client_graph")
 }

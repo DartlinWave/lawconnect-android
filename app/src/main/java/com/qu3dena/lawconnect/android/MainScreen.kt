@@ -25,8 +25,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.DefaultShadowColor
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -87,7 +85,7 @@ private sealed class BottomBarScreen(
     )
 
     object Clients : BottomBarScreen(
-        route = Graph.Client.route,
+        route = Graph.Clients.route,
         title = "Clients",
         icon = Icons.Default.Face
     )
