@@ -35,6 +35,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -76,6 +78,8 @@ dependencies {
     // OkHttp
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
