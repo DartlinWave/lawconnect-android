@@ -13,4 +13,6 @@ interface AuthRepository {
     fun getTokenFlow(): Flow<String?>
 
     fun signOut(): Flow<Unit>
+
+    fun getUsernameFlow(): Flow<String?>
 }

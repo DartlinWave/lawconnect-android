@@ -1,14 +1,19 @@
 package com.qu3dena.lawconnect.android
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -34,9 +39,16 @@ fun MainScreen(
     authViewModel: AuthViewModel = hiltViewModel()
 ) {
     val isLoggedIn = authViewModel.isLoggedIn.collectAsState(false)
+    val username = authViewModel.username.collectAsState("")
+
     val navController = rememberNavController()
 
     Scaffold(
+        topBar = {
+            if (isLoggedIn.value) {
+                AppTopBar(username = username.value.toString())
+            }
+        },
         bottomBar = {
             if (isLoggedIn.value)
                 BottomBar(navController = navController)
@@ -137,4 +149,24 @@ private fun RowScope.AddBottomBarItem(
             }
         }
     )
+}
+
+@Composable
+fun AppTopBar(username: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.primary)
+            .padding(16.dp)
+    ) {
+        Text(
+            text = "Hello, $username",
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
+        Divider(
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
+            thickness = 1.dp
+        )
+    }
 }

@@ -28,6 +28,7 @@ class AuthRepositoryImpl @Inject constructor(
         val request = SignInRequestDto(username, password)
         val response = apiService.signIn(request)
         authPreferences.saveToken(response.token)
+        authPreferences.saveUsername(response.username)
         emit(response.toSignInResponse())
     }.flowOn(Dispatchers.IO)
 
@@ -38,4 +39,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun getTokenFlow(): Flow<String?> =
         authPreferences.tokenFlow
+
+    override fun getUsernameFlow(): Flow<String?> =
+        authPreferences.usernameFlow
 }
