@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.ui.screens
+package com.qu3dena.lawconnect.android.features.home.presentation.ui.screens
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -37,11 +37,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
-import com.qu3dena.lawconnect.android.core.ui.viewmodels.CasesUiState
-import com.qu3dena.lawconnect.android.core.ui.viewmodels.HomeViewModel
-import com.qu3dena.lawconnect.android.core.ui.viewmodels.InvitedCasesUiState
-import com.qu3dena.lawconnect.android.core.ui.viewmodels.InvitedCase
-import com.qu3dena.lawconnect.android.core.ui.viewmodels.SuggestedCase
+import com.qu3dena.lawconnect.android.features.home.presentation.ui.viewmodels.CasesUiState
+import com.qu3dena.lawconnect.android.features.home.presentation.ui.viewmodels.HomeViewModel
+import com.qu3dena.lawconnect.android.features.home.presentation.ui.viewmodels.InvitedCasesUiState
+import com.qu3dena.lawconnect.android.features.home.presentation.ui.viewmodels.InvitedCase
+import com.qu3dena.lawconnect.android.features.home.presentation.ui.viewmodels.SuggestedCase
 import com.qu3dena.lawconnect.android.shared.components.BrownActionButton
 
 @Composable

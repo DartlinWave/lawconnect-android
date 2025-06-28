@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.presentation.components
+package com.qu3dena.lawconnect.android.core.presentation.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face

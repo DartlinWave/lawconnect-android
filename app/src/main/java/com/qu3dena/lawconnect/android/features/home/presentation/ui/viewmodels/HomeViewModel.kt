@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.ui.viewmodels
+package com.qu3dena.lawconnect.android.features.home.presentation.ui.viewmodels
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

@@ -1,21 +1,24 @@
 package com.qu3dena.lawconnect.android.core.presentation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.padding
+
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.AuthViewModel
-import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
+
 import com.qu3dena.lawconnect.android.core.navigation.SetupNavGraph
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import com.qu3dena.lawconnect.android.shared.contracts.AuthSessionManager
-import com.qu3dena.lawconnect.android.core.presentation.components.AppTopBar
-import com.qu3dena.lawconnect.android.core.presentation.components.BottomBar
+import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
+import com.qu3dena.lawconnect.android.core.presentation.ui.components.AppTopBar
+import com.qu3dena.lawconnect.android.core.presentation.ui.components.BottomBar
+
+import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.AuthViewModel
 
 /**
  * Main screen composable that sets up the app's navigation structure.

@@ -1,11 +1,10 @@
-package com.qu3dena.lawconnect.android.core.presentation.components
+package com.qu3dena.lawconnect.android.core.presentation.ui.components
 
 import androidx.compose.material3.NavigationBar
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
-import com.qu3dena.lawconnect.android.core.presentation.components.BottomBarScreen
 
 /**
  * Bottom navigation bar component.

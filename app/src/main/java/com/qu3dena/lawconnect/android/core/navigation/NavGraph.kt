@@ -31,10 +31,6 @@ fun SetupNavGraph(
         navController = navController,
         startDestination = if (isLoggedIn) Graph.Home.route else Graph.Auth.route
     ) {
-        homeNavGraph(
-            route = Graph.Home.route,
-            navController = navController
-        )
 
         featureNavGraphs.forEach { featureNavGraph ->
             featureNavGraph.build(this, navController, additionalParams)

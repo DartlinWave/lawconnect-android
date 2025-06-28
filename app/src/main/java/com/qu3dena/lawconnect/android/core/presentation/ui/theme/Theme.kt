@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.ui.theme
+package com.qu3dena.lawconnect.android.core.presentation.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

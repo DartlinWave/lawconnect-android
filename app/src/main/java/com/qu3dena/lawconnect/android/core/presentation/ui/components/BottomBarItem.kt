@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.core.presentation.components
+package com.qu3dena.lawconnect.android.core.presentation.ui.components
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Icon
@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
-import com.qu3dena.lawconnect.android.core.presentation.components.BottomBarScreen
 
 /**
  * Individual bottom bar item component.
