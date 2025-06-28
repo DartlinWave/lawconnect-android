@@ -30,12 +30,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.AuthViewModel
 import com.qu3dena.lawconnect.android.core.navigation.Graph
+import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
 import com.qu3dena.lawconnect.android.core.navigation.SetupNavGraph
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import javax.inject.Inject
@@ -56,6 +56,9 @@ fun MainScreen(
     val username = authViewModel.username.collectAsState("")
 
     val navController = rememberNavController()
+    
+    // Create navigation coordinator to handle all navigation logic
+    val navigationCoordinator = NavigationCoordinator(navController, authViewModel)
 
     Scaffold(
         topBar = {
@@ -65,7 +68,10 @@ fun MainScreen(
         },
         bottomBar = {
             if (isLoggedIn.value)
-                BottomBar(navController = navController)
+                BottomBar(
+                    navController = navController,
+                    navigationCoordinator = navigationCoordinator
+                )
         }
     ) { innerPadding ->
         Box(
@@ -77,7 +83,8 @@ fun MainScreen(
                 navController = navController,
                 padding = innerPadding,
                 isLoggedIn = isLoggedIn.value,
-                featureNavGraphs = featureNavGraphs
+                featureNavGraphs = featureNavGraphs,
+                additionalParams = navigationCoordinator.prepareAdditionalParams()
             )
         }
     }
@@ -114,7 +121,10 @@ private sealed class BottomBarScreen(
 }
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomBar(
+    navController: NavHostController,
+    navigationCoordinator: NavigationCoordinator
+) {
     val screens = listOf(
         BottomBarScreen.Home,
         BottomBarScreen.Clients,
@@ -130,7 +140,7 @@ fun BottomBar(navController: NavHostController) {
             AddBottomBarItem(
                 screen = screen,
                 currentDestination = currentDestination,
-                navController = navController
+                navigationCoordinator = navigationCoordinator
             )
         }
     }
@@ -140,7 +150,7 @@ fun BottomBar(navController: NavHostController) {
 private fun RowScope.AddBottomBarItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
-    navController: NavHostController
+    navigationCoordinator: NavigationCoordinator
 ) {
     NavigationBarItem(
         label = { Text(text = screen.title) },
@@ -149,10 +159,7 @@ private fun RowScope.AddBottomBarItem(
         },
         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
         onClick = {
-            navController.navigate(screen.route) {
-                popUpTo(navController.graph.findStartDestination().id)
-                launchSingleTop = true
-            }
+            navigationCoordinator.navigateToBottomBarDestination(screen.route)
         }
     )
 }

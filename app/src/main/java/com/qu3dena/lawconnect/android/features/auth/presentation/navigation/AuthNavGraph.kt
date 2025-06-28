@@ -40,7 +40,11 @@ sealed class SignUpStep(val route: String) {
 class AuthNavGraph : FeatureNavGraph {
     
     @SuppressLint("UnrememberedGetBackStackEntry")
-    override fun build(builder: NavGraphBuilder, navController: NavHostController) {
+    override fun build(
+        builder: NavGraphBuilder, 
+        navController: NavHostController,
+        additionalParams: Map<String, Any>
+    ) {
         builder.navigation(
             route = "auth_graph",
             startDestination = AuthScreen.SignIn.route

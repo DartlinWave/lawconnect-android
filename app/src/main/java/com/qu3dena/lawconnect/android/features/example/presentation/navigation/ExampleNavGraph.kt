@@ -33,7 +33,11 @@ sealed class ExampleScreen(val route: String) {
  */
 class ExampleNavGraph : FeatureNavGraph {
     
-    override fun build(builder: NavGraphBuilder, navController: NavHostController) {
+    override fun build(
+        builder: NavGraphBuilder, 
+        navController: NavHostController,
+        additionalParams: Map<String, Any>
+    ) {
         builder.navigation(
             route = "example_graph",
             startDestination = ExampleScreen.Main.route

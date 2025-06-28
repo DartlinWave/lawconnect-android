@@ -23,7 +23,11 @@ sealed class ClientScreen(val route: String) {
  */
 class ClientNavGraph : FeatureNavGraph {
     
-    override fun build(builder: NavGraphBuilder, navController: NavHostController) {
+    override fun build(
+        builder: NavGraphBuilder, 
+        navController: NavHostController,
+        additionalParams: Map<String, Any>
+    ) {
         builder.navigation(
             route = "client_graph",
             startDestination = ClientScreen.Main.route
