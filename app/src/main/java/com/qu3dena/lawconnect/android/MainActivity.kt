@@ -3,7 +3,7 @@ package com.qu3dena.lawconnect.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.qu3dena.lawconnect.android.core.MainScreen
+import com.qu3dena.lawconnect.android.core.presentation.MainScreen
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
