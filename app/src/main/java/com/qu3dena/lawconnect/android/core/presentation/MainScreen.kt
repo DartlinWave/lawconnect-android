@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.collectAsState
 import androidx.compose.foundation.layout.padding
 
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 
 import com.qu3dena.lawconnect.android.core.navigation.SetupNavGraph
@@ -17,8 +16,6 @@ import com.qu3dena.lawconnect.android.shared.contracts.AuthSessionManager
 import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
 import com.qu3dena.lawconnect.android.core.presentation.ui.components.AppTopBar
 import com.qu3dena.lawconnect.android.core.presentation.ui.components.BottomBar
-
-import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.AuthViewModel
 
 /**
  * Main screen composable that sets up the app's navigation structure.
@@ -29,22 +26,20 @@ import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.A
  */
 @Composable
 fun MainScreen(
-    authViewModel: AuthViewModel = hiltViewModel(),
+    authSessionManager: AuthSessionManager,
     featureNavGraphs: List<FeatureNavGraph>
 ) {
-    val isLoggedIn = authViewModel.isLoggedIn.collectAsState(false)
-    val username = authViewModel.username.collectAsState("")
+    val isLoggedIn = authSessionManager.getIsLoggedInState().collectAsState(false)
+    val username = authSessionManager.getUsernameLoggedState().collectAsState(null)
 
     val navController = rememberNavController()
-    
-    // Create navigation coordinator to handle all navigation logic
-    // Pass AuthViewModel as AuthSessionManager to maintain dependency inversion
-    val navigationCoordinator = NavigationCoordinator(navController, authViewModel as AuthSessionManager)
+
+    val navigationCoordinator = NavigationCoordinator(navController, authSessionManager)
 
     Scaffold(
         topBar = {
             if (isLoggedIn.value) {
-                AppTopBar(username = username.value.toString())
+                AppTopBar(username = username.value ?: "")
             }
         },
         bottomBar = {
