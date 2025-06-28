@@ -38,8 +38,7 @@ import com.qu3dena.lawconnect.android.core.navigation.Graph
 import com.qu3dena.lawconnect.android.core.navigation.NavigationCoordinator
 import com.qu3dena.lawconnect.android.core.navigation.SetupNavGraph
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
-import javax.inject.Inject
-
+import com.qu3dena.lawconnect.android.shared.contracts.AuthSessionManager
 /**
  * Main screen composable that sets up the app's navigation structure.
  * 
@@ -58,7 +57,8 @@ fun MainScreen(
     val navController = rememberNavController()
     
     // Create navigation coordinator to handle all navigation logic
-    val navigationCoordinator = NavigationCoordinator(navController, authViewModel)
+    // Pass AuthViewModel as AuthSessionManager to maintain dependency inversion
+    val navigationCoordinator = NavigationCoordinator(navController, authViewModel as AuthSessionManager)
 
     Scaffold(
         topBar = {

@@ -2,7 +2,7 @@ package com.qu3dena.lawconnect.android.core.navigation
 
 import androidx.navigation.NavHostController
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.AuthViewModel
+import com.qu3dena.lawconnect.android.shared.contracts.AuthSessionManager
 
 /**
  * Navigation Coordinator that handles all navigation logic and parameter preparation.
@@ -12,10 +12,11 @@ import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.A
  * - Keeping MainScreen clean and focused
  * - Making navigation logic testable and reusable
  * - Providing a single place to manage all navigation parameters
+ * - Using contracts instead of concrete implementations
  */
 class NavigationCoordinator(
     private val navController: NavHostController,
-    private val authViewModel: AuthViewModel
+    private val authSessionManager: AuthSessionManager
 ) {
     
     /**
@@ -34,7 +35,7 @@ class NavigationCoordinator(
      */
     private fun createSignOutCallback(): () -> Unit {
         return {
-            authViewModel.signOut()
+            authSessionManager.signOut()
             navController.navigate(Graph.Auth.route) {
                 popUpTo(Graph.Root.route) { inclusive = true }
                 launchSingleTop = true

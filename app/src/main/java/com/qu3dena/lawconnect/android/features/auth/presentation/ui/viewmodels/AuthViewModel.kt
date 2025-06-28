@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.qu3dena.lawconnect.android.features.auth.domain.usecases.GetSessionStateUseCase
 import com.qu3dena.lawconnect.android.features.auth.domain.usecases.GetUsernameUseCase
 import com.qu3dena.lawconnect.android.features.auth.domain.usecases.SignOutUseCase
+import com.qu3dena.lawconnect.android.shared.contracts.AuthSessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +18,7 @@ class AuthViewModel @Inject constructor(
     private val signOutUseCase: SignOutUseCase,
     private val getUsernameUseCase: GetUsernameUseCase,
     private val getSessionStateUseCase: GetSessionStateUseCase
-) : ViewModel() {
+) : ViewModel(), AuthSessionManager {
 
     val username: StateFlow<String?> = getUsernameUseCase.invoke()
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
@@ -26,7 +27,7 @@ class AuthViewModel @Inject constructor(
         getSessionStateUseCase.invoke()
             .stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
-    fun signOut() {
+    override fun signOut() {
         viewModelScope.launch {
             signOutUseCase.invoke()
         }
