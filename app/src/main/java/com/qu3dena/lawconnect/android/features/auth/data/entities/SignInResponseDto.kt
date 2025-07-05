@@ -6,12 +6,12 @@ data class SignInResponseDto(
     val id: String,
     val username: String,
     val token: String
-) {
-    fun toSignInResponse(): SignInResponse {
-        return SignInResponse(
-            id = id,
-            username = username,
-            token = token
-        )
-    }
+)
+
+fun SignInResponseDto.toSignInResponse(): SignInResponse {
+    return SignInResponse(
+        id = id,
+        username = username,
+        token = token
+    )
 }

@@ -1,29 +1,33 @@
 package com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.LazyColumn
+
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
+import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
-import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.CasesViewModel
-import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.FilterType
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.graphics.Color
+
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+
+import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.CasesViewModel
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.FilterType
 
 @Composable
 fun CasesView(
@@ -32,7 +36,6 @@ fun CasesView(
 ) {
     val uiState by viewModel.uiState
 
-    // Load cases when the composable is first created (on navigation)
     LaunchedEffect(Unit) {
         viewModel.loadCases()
     }
@@ -42,7 +45,6 @@ fun CasesView(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Filter Section
         FilterSection(
             viewModel = viewModel,
             searchQuery = uiState.searchQuery,
@@ -56,8 +58,6 @@ fun CasesView(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Cases Content
-        val error = uiState.error
         when {
             uiState.isLoading -> {
                 Box(
@@ -68,9 +68,9 @@ fun CasesView(
                 }
             }
 
-            error != null -> {
+            uiState.error != null -> {
                 ErrorSection(
-                    error = error,
+                    error = uiState.error.toString(),
                     onRetry = viewModel::retry
                 )
             }
@@ -105,11 +105,12 @@ private fun FilterSection(
     onFilterTypeChange: (FilterType) -> Unit
 ) {
     Column {
-        // Search Field
         OutlinedTextField(
             value = searchQuery,
             onValueChange = onSearchQueryChange,
-            placeholder = { Text("Search cases...") },
+            placeholder = {
+                Text("Search cases...")
+            },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -122,23 +123,33 @@ private fun FilterSection(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Filter Chips
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             FilterChip(
                 selected = selectedFilterType == FilterType.TITLE,
-                onClick = { onFilterTypeChange(FilterType.TITLE) },
-                label = { Text("By Title") }
+
+                onClick = {
+                    onFilterTypeChange(FilterType.TITLE)
+                },
+
+                label = {
+                    Text("By Title")
+                }
             )
 
             FilterChip(
                 selected = selectedFilterType == FilterType.DATE,
+
                 onClick = {
                     onFilterTypeChange(FilterType.DATE)
                     viewModel.toggleDatePickerVisibility(true)
                 },
-                label = { Text("By Date") },
+
+                label = {
+                    Text("By Date")
+                },
+
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.DateRange,
@@ -149,7 +160,6 @@ private fun FilterSection(
             )
         }
 
-        // Date Range Section
         if (selectedFilterType == FilterType.DATE) {
             Spacer(modifier = Modifier.height(12.dp))
             DateRangeSection(
@@ -161,7 +171,6 @@ private fun FilterSection(
             )
         }
 
-        // Date Picker Dialog
         if (isDatePickerVisible) {
             DatePickerDialog(
                 onDateSelected = { date ->
@@ -328,7 +337,6 @@ private fun CaseCard(case: Case, onClick: () -> Unit) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // Left side - Title and Client Info
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
@@ -336,7 +344,7 @@ private fun CaseCard(case: Case, onClick: () -> Unit) {
                         text = case.title,
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        maxLines = 2,
+                        maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )
 
@@ -358,20 +366,19 @@ private fun CaseCard(case: Case, onClick: () -> Unit) {
                             text = case.status,
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                            color = Color.Blue
                         )
                     }
                 }
 
                 Spacer(modifier = Modifier.width(16.dp))
 
-                // Right side - Description and Date
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
                         text = "Description",
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.primary
                     )

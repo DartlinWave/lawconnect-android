@@ -14,33 +14,33 @@ class AuthPreferences @Inject constructor(
 ) {
     private val prefs = context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
 
-    private val _tokenFlow = MutableStateFlow(prefs.getString("auth_token", null))
-    val tokenFlow: StateFlow<String?> = _tokenFlow
+    private val _token = MutableStateFlow(prefs.getString("auth_token", null))
+    val token: StateFlow<String?> = _token
 
-    private val _usernameFlow = MutableStateFlow(prefs.getString("auth_username", null))
-    val usernameFlow: StateFlow<String?> = _usernameFlow
+    private val _username = MutableStateFlow(prefs.getString("auth_username", null))
+    val username: StateFlow<String?> = _username
 
-    val userIdFlow: Flow<String?> = tokenFlow.map { token ->
+    val userIdFlow: Flow<String?> = token.map { token ->
         JwtUtils.extractUserId(token)
     }
 
     fun saveToken(token: String) {
         prefs.edit().putString("auth_token", token).apply()
-        _tokenFlow.value = token
+        _token.value = token
     }
 
     fun saveUsername(username: String) {
         prefs.edit().putString("auth_username", username).apply()
-        _usernameFlow.value = username
+        _username.value = username
     }
 
     fun clearToken() {
         prefs.edit().remove("auth_token").apply()
-        _tokenFlow.value = null
+        _token.value = null
     }
 
     fun clearUsername() {
         prefs.edit().remove("auth_username").apply()
-        _usernameFlow.value = null
+        _username.value = null
     }
 }

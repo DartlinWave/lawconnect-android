@@ -1,18 +1,20 @@
 package com.qu3dena.lawconnect.android.features.auth.di
 
 import android.content.Context
+import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import com.qu3dena.lawconnect.android.features.auth.data.di.AuthPreferences
 import com.qu3dena.lawconnect.android.features.auth.data.remote.AuthApiService
 import com.qu3dena.lawconnect.android.features.auth.data.remote.AuthInterceptor
 import com.qu3dena.lawconnect.android.features.auth.domain.repository.AuthRepository
 import com.qu3dena.lawconnect.android.features.auth.presentation.navigation.AuthNavGraph
-import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+
 import okhttp3.Interceptor
 import javax.inject.Singleton
 

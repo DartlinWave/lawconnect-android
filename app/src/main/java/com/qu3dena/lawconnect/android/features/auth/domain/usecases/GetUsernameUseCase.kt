@@ -7,5 +7,5 @@ import javax.inject.Inject
 class GetUsernameUseCase @Inject constructor(
     private val repository: AuthRepository
 ) {
-    operator fun invoke(): Flow<String?> = repository.getUsernameFlow()
+    operator fun invoke(): Flow<String?> = repository.getUsername()
 }

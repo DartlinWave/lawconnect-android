@@ -12,9 +12,9 @@ class AuthInterceptor @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        // Get the token from AuthPreferences
+
         val token: String? = runBlocking {
-            authPreferences.tokenFlow.first()
+            authPreferences.token.first()
         }
 
         val request = chain.request().newBuilder().apply {

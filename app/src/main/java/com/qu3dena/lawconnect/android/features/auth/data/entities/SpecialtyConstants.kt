@@ -1,6 +1,5 @@
 package com.qu3dena.lawconnect.android.features.auth.data.entities
 
-// Map of specialties for lawyers
 val SPECIALTY_MAP = mapOf(
     "civil" to "Civil Law",
     "criminal" to "Criminal Law",

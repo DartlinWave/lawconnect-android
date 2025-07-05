@@ -10,9 +10,9 @@ interface AuthRepository {
 
     fun signIn(username: String, password: String): Flow<SignInResponse>
 
-    fun getTokenFlow(): Flow<String?>
-
     fun signOut(): Flow<Unit>
 
-    fun getUsernameFlow(): Flow<String?>
+    fun getToken(): Flow<String?>
+
+    fun getUsername(): Flow<String?>
 }

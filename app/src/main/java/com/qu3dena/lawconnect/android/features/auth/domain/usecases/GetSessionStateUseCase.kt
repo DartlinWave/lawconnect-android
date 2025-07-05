@@ -10,5 +10,5 @@ class GetSessionStateUseCase @Inject constructor(
     private val repository: AuthRepository
 ) {
     operator fun invoke(): Flow<Boolean> =
-        repository.getTokenFlow().map { it != null }.distinctUntilChanged()
+        repository.getToken().map { it != null }.distinctUntilChanged()
 }
