@@ -10,7 +10,7 @@ import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(SingletonComponent::class)
-object HomeNavGraphModule {
+object HomeModule {
 
     @Provides
     @IntoSet

@@ -57,9 +57,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Retrofit and Gson
+    // Retrofit and Moshi
     implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.converter.moshi)
     // Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     // Coil
@@ -78,6 +78,10 @@ dependencies {
     // OkHttp
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    // Moshi
+    implementation(libs.moshi.core)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.codegen)
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 

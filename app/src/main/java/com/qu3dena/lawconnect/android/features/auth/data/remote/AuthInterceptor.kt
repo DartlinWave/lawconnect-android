@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.features.auth.data.source.remote
+package com.qu3dena.lawconnect.android.features.auth.data.remote
 
 import com.qu3dena.lawconnect.android.features.auth.data.di.AuthPreferences
 import kotlinx.coroutines.flow.first
@@ -12,7 +12,7 @@ class AuthInterceptor @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        // We are blocking until we get the token from the flow
+        // Get the token from AuthPreferences
         val token: String? = runBlocking {
             authPreferences.tokenFlow.first()
         }

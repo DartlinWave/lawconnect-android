@@ -1,21 +1,4 @@
 package com.qu3dena.lawconnect.android.features.clients.data.di
 
-import com.qu3dena.lawconnect.android.features.clients.data.remote.ClientApiService
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import javax.inject.Singleton
-
-@Module
-@InstallIn(SingletonComponent::class)
-object ClientNetworkModule {
-
-    @Provides
-    @Singleton
-    fun provideClientApiService(
-        retrofit: Retrofit
-    ): ClientApiService =
-        retrofit.create(ClientApiService::class.java)
-}
+// This module is no longer needed since ClientApiService now uses the shared ApiService
+// instead of being a Retrofit interface

@@ -8,4 +8,6 @@ interface CaseRepository {
     fun getSuggestedCases(): Flow<List<Case>>
 
     fun getPostulatedCases(): Flow<List<InvitedCase>>
+
+    fun getCaseById(caseId: String): Flow<Case>
 }

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.qu3dena.lawconnect.android.features.auth.data.source.local.SPECIALTY_MAP
+import com.qu3dena.lawconnect.android.features.auth.data.entities.SPECIALTY_MAP
 import com.qu3dena.lawconnect.android.features.auth.presentation.ui.viewmodels.SignUpUiState
 import com.qu3dena.lawconnect.android.shared.components.BrownActionButton
 import com.qu3dena.lawconnect.android.shared.components.CustomTextField

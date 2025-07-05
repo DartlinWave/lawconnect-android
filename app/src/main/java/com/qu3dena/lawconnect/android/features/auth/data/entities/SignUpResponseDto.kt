@@ -1,4 +1,4 @@
-package com.qu3dena.lawconnect.android.features.auth.data.model
+package com.qu3dena.lawconnect.android.features.auth.data.entities
 
 import com.qu3dena.lawconnect.android.features.auth.domain.model.SignUpResponse
 
