@@ -4,10 +4,11 @@ import com.qu3dena.lawconnect.android.features.auth.domain.repository.AuthReposi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GetSessionStateUseCase(
+class GetSessionStateUseCase @Inject constructor(
     private val repository: AuthRepository
 ) {
-    fun invoke(): Flow<Boolean> =
+    operator fun invoke(): Flow<Boolean> =
         repository.getTokenFlow().map { it != null }.distinctUntilChanged()
 }
