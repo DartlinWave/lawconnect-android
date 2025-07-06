@@ -42,7 +42,7 @@ class HomeViewModel @Inject constructor(
         loadInvitedCases()
     }
 
-    private fun loadCases() {
+     fun loadCases() {
         viewModelScope.launch {
             _casesState.value = CasesUiState.Loading
 

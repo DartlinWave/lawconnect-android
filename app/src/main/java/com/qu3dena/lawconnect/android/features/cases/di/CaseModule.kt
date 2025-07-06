@@ -1,10 +1,12 @@
 package com.qu3dena.lawconnect.android.features.cases.di
 
+import com.qu3dena.lawconnect.android.features.cases.data.remote.ApplicationApiService
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import com.qu3dena.lawconnect.android.shared.contracts.CaseLookupService
 
 import com.qu3dena.lawconnect.android.features.cases.data.remote.LookupService
 import com.qu3dena.lawconnect.android.features.cases.data.remote.CaseApiService
+import com.qu3dena.lawconnect.android.features.cases.domain.repository.ApplicationRepository
 import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
 import com.qu3dena.lawconnect.android.features.cases.presentation.navigation.CaseNavGraph
 import com.qu3dena.lawconnect.android.features.cases.presentation.navigation.ClientNavGraph
@@ -25,6 +27,12 @@ object CaseModule {
     fun provideCaseRepository(
         caseApiService: CaseApiService
     ): CaseRepository = caseApiService
+
+    @Provides
+    @Singleton
+    fun provideApplicationRepository(
+        applicationApiService: ApplicationApiService
+    ): ApplicationRepository = applicationApiService
 
     @Provides
     @Singleton

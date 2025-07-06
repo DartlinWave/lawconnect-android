@@ -25,6 +25,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -50,6 +51,10 @@ fun HomeView(
 ) {
     val casesState = viewModel.casesState.value
     val invitedState = viewModel.invitedCasesState.value
+
+    LaunchedEffect(Unit) {
+       viewModel.loadCases()
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
 

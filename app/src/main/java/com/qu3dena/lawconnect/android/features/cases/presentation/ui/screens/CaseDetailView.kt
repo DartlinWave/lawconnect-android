@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
 import com.qu3dena.lawconnect.android.shared.components.GreenActionButton
 import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.CaseDetailViewModel
+import com.qu3dena.lawconnect.android.shared.components.RedActionButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,7 +55,8 @@ fun CaseDetailView(
                 CaseDetailContent(
                     case = uiState.case!!,
                     onApplyClick = {
-                        // TODO: Implement apply logic
+                        viewModel.submitApplicationToCase()
+                        onBackPressed()
                     }
                 )
             }
@@ -118,7 +120,7 @@ private fun CaseDetailContent(
         Spacer(modifier = Modifier.height(32.dp))
 
         GreenActionButton(
-            text = "Apply",
+            text = "Apply to Case",
             onClick = onApplyClick,
             modifier = Modifier.fillMaxWidth()
         )
