@@ -7,6 +7,7 @@ import com.qu3dena.lawconnect.android.features.cases.data.remote.LookupService
 import com.qu3dena.lawconnect.android.features.cases.data.remote.CaseApiService
 import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
 import com.qu3dena.lawconnect.android.features.cases.presentation.navigation.CaseNavGraph
+import com.qu3dena.lawconnect.android.features.cases.presentation.navigation.ClientNavGraph
 
 import dagger.Module
 import dagger.Provides
@@ -35,5 +36,11 @@ object CaseModule {
     @IntoSet
     fun provideCaseNavGraph(): FeatureNavGraph {
         return CaseNavGraph()
+    }
+
+    @Provides
+    @IntoSet
+    fun provideClientNavGraph(): FeatureNavGraph {
+        return ClientNavGraph()
     }
 }

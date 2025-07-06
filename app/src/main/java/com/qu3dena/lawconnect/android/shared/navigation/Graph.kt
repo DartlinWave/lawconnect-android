@@ -1,7 +1,11 @@
-package com.qu3dena.lawconnect.android.core.navigation
+package com.qu3dena.lawconnect.android.shared.navigation
 
 /**
  * Represents a navigation graph.
+ *
+ * By placing this class in the shared layer, both core and feature modules
+ * can access these routes directly, simplifying navigation while maintaining
+ * architectural boundaries.
  *
  * @property route The route identifier for the graph.
  */
@@ -33,7 +37,7 @@ sealed class Graph(val route: String) {
     object Profile : Graph("profile_graph")
 
     /**
-     * Client section navigation graph.
+     * Clients section navigation graph.
      */
-    object Clients : Graph("client_graph")
+    object Clients : Graph("clients_graph")
 }

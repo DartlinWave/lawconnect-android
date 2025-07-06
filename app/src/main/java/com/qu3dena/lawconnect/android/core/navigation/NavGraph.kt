@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.compose.foundation.layout.PaddingValues
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
+import com.qu3dena.lawconnect.android.shared.navigation.Graph
 
 /**
  * Main navigation graph setup.

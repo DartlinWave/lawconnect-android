@@ -3,11 +3,11 @@ package com.qu3dena.lawconnect.android.core.presentation.ui.components
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.qu3dena.lawconnect.android.core.navigation.Graph
-import com.qu3dena.lawconnect.android.shared.navigation.SharedScreen
+import androidx.compose.material.icons.filled.MailOutline
+
+import com.qu3dena.lawconnect.android.shared.navigation.Graph
 
 /**
  * Model representing bottom bar screen items.
@@ -27,7 +27,7 @@ sealed class BottomBarScreen(
     )
 
     object Clients : BottomBarScreen(
-        route = SharedScreen.Clients.route,
+        route = Graph.Clients.route,
         title = "Clients",
         icon = Icons.Default.Face
     )

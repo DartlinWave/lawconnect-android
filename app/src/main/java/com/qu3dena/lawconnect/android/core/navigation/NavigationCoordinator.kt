@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.qu3dena.lawconnect.android.shared.contracts.AuthSessionManager
+import com.qu3dena.lawconnect.android.shared.navigation.Graph
 
 /**
  * Navigation Coordinator that handles all navigation logic and parameter preparation.
@@ -58,8 +59,8 @@ class NavigationCoordinator(
                             updateCurrentBottomBarDestination(Graph.Cases.route)
                             return@forEach
                         }
-                        "shared_clients" -> {
-                            updateCurrentBottomBarDestination("shared_clients")
+                        Graph.Clients.route -> {
+                            updateCurrentBottomBarDestination(Graph.Clients.route)
                             return@forEach
                         }
                         Graph.Profile.route -> {
@@ -161,7 +162,7 @@ class NavigationCoordinator(
             Graph.Home.route,
             Graph.Cases.route,
             Graph.Profile.route,
-            "shared_clients" // SharedScreen.Clients.route
+            Graph.Clients.route
         )
         return route in bottomBarRoutes
     }
