@@ -7,27 +7,27 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyColumn
 
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.DateRange
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.graphics.Color
 
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
-import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.CasesViewModel
 import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.FilterType
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.CasesViewModel
 
 @Composable
 fun CasesView(

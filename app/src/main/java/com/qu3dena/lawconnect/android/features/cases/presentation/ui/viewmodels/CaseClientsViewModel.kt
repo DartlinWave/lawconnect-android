@@ -1,4 +1,3 @@
-// Kotlin
 package com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels
 
 import javax.inject.Inject
@@ -9,11 +8,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 
-import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
-import com.qu3dena.lawconnect.android.features.cases.domain.usecases.GetCaseClientsUseCase
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
+
+import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
+import com.qu3dena.lawconnect.android.features.cases.domain.usecases.GetCaseClientsUseCase
 
 sealed class ClientUiState {
     object Loading : ClientUiState()

@@ -1,9 +1,10 @@
 package com.qu3dena.lawconnect.android.features.cases.data.remote
 
-import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
-import com.qu3dena.lawconnect.android.shared.contracts.CaseLookupService
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
+import kotlinx.coroutines.flow.first
+
+import com.qu3dena.lawconnect.android.shared.contracts.CaseLookupService
+import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
 
 class LookupService @Inject constructor(
     private val repository: CaseRepository

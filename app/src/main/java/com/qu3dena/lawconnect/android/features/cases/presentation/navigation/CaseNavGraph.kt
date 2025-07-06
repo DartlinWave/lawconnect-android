@@ -1,16 +1,16 @@
 package com.qu3dena.lawconnect.android.features.cases.presentation.navigation
 
+import androidx.navigation.NavType
 import androidx.navigation.navigation
+import androidx.navigation.navArgument
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CaseClientsView
 
 import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CasesView
 import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CaseDetailView
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CaseClientsView
 
 class CaseNavGraph : FeatureNavGraph {
 

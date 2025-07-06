@@ -1,7 +1,6 @@
 package com.qu3dena.lawconnect.android.features.cases.data.remote
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 
 import com.qu3dena.lawconnect.android.shared.services.ApiService

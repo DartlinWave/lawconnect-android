@@ -1,7 +1,5 @@
 package com.qu3dena.lawconnect.android.features.cases.presentation.navigation
 
-import com.qu3dena.lawconnect.android.shared.navigation.Graph
-
 const val DETAIL_ARGUMENT_CASE_ID = "caseId"
 
 sealed class CaseScreen(val route: String) {

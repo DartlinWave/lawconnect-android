@@ -1,7 +1,7 @@
 package com.qu3dena.lawconnect.android.features.cases.domain.model
 
-import java.time.Instant
 import java.util.UUID
+import java.time.Instant
 
 data class Case(
     val id: UUID,

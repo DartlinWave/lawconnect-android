@@ -1,15 +1,17 @@
 package com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.compose.runtime.State
 import androidx.lifecycle.viewModelScope
+import androidx.compose.runtime.mutableStateOf
+
 import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
 import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.launch
+
 import javax.inject.Inject
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.catch
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 @HiltViewModel
 class CaseDetailViewModel @Inject constructor(
