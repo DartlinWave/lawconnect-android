@@ -1,40 +1,44 @@
-package com.qu3dena.lawconnect.android.features.clients.presentation.ui.screens
+package com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.CircularProgressIndicator
+
+import androidx.compose.runtime.Composable
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.ui.text.SpanStyle
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
+
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.qu3dena.lawconnect.android.features.clients.domain.model.Client
-import com.qu3dena.lawconnect.android.features.clients.presentation.ui.viewmodels.ClientsViewModel
-import com.qu3dena.lawconnect.android.features.clients.presentation.ui.viewmodels.ClientUiState
-import com.qu3dena.lawconnect.android.shared.components.BrownActionButton
+
 import com.qu3dena.lawconnect.android.shared.components.GrayActionButton
+import com.qu3dena.lawconnect.android.shared.components.BrownActionButton
+
+import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.ClientUiState
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.viewmodels.CaseClientsViewModel
 
 @Composable
-fun ClientsView(
-    viewModel: ClientsViewModel = hiltViewModel()
+fun CaseClientsView(
+    viewModel: CaseClientsViewModel = hiltViewModel()
 ) {
     val state = viewModel.clientsState.value
 
@@ -72,7 +76,7 @@ fun ClientsView(
             is ClientUiState.Success -> {
                 LazyColumn(modifier = Modifier.fillMaxWidth()) {
                     items(state.aCases) { client ->
-                        ClientItem(client)
+                        CaseClientItem(client)
                     }
                 }
             }
@@ -81,8 +85,8 @@ fun ClientsView(
 }
 
 @Composable
-fun ClientItem(
-    client: Client,
+fun CaseClientItem(
+    case: Case,
     onFollowUp: () -> Unit = {},
     onUpdate: () -> Unit = {}
 ) {
@@ -102,7 +106,7 @@ fun ClientItem(
             ) {
                 Column {
                     Text(
-                        text = client.title,
+                        text = case.title,
                         style = MaterialTheme.typography.titleMedium
                     )
 
@@ -118,7 +122,7 @@ fun ClientItem(
                     text = buildAnnotatedString {
                         append("Status: ")
                         withStyle(style = SpanStyle(color = Color(0xFF4CAF50))) {
-                            append(client.status)
+                            append(case.status)
                         }
                     },
                     style = MaterialTheme.typography.labelLarge,
@@ -130,7 +134,7 @@ fun ClientItem(
 
 
             Text(
-                text = "Start date: ${client.createdAt}",
+                text = "Start date: ${case.createdAt}",
                 style = MaterialTheme.typography.bodySmall
             )
 

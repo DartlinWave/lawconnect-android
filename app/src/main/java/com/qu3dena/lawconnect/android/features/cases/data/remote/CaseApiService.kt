@@ -1,21 +1,24 @@
 package com.qu3dena.lawconnect.android.features.cases.data.remote
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
-import com.qu3dena.lawconnect.android.features.auth.data.di.AuthPreferences
-import com.qu3dena.lawconnect.android.features.cases.data.entities.CaseDto
-import com.qu3dena.lawconnect.android.features.cases.data.entities.InvitedCaseDto
-import com.qu3dena.lawconnect.android.features.cases.data.entities.toDomain
-import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
-import com.qu3dena.lawconnect.android.features.cases.domain.model.InvitedCase
-import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
+
 import com.qu3dena.lawconnect.android.shared.services.ApiService
-import kotlinx.coroutines.Dispatchers
+import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
+import com.qu3dena.lawconnect.android.features.cases.data.entities.CaseDto
+import com.qu3dena.lawconnect.android.features.auth.data.di.AuthPreferences
+import com.qu3dena.lawconnect.android.features.cases.data.entities.toDomain
+import com.qu3dena.lawconnect.android.features.cases.domain.model.InvitedCase
+import com.qu3dena.lawconnect.android.features.cases.data.entities.InvitedCaseDto
+import com.qu3dena.lawconnect.android.features.cases.domain.repository.CaseRepository
+
+import javax.inject.Inject
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 
 class CaseApiService @Inject constructor(
     private val api: ApiService,
@@ -23,9 +26,30 @@ class CaseApiService @Inject constructor(
 ) : CaseRepository {
 
     @RequiresApi(Build.VERSION_CODES.O)
+    override fun getAcceptedCases(): Flow<List<Case>> = flow {
+        try {
+            val userId = authPreferences.userIdFlow.first()
+
+            if (userId == null) {
+                emit(emptyList())
+                return@flow
+            }
+
+            val acceptedCases = api.get<List<CaseDto>>("cases/lawyer/$userId")
+                .map { it.toDomain() }
+
+            emit(acceptedCases)
+        }
+        catch (_: Exception) {
+            emit(emptyList())
+        }
+    }.flowOn(Dispatchers.IO)
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun getSuggestedCases(): Flow<List<Case>> = flow {
         try {
             val userId = authPreferences.userIdFlow.first()
+
             if (userId == null) {
                 emit(emptyList())
                 return@flow
@@ -65,11 +89,13 @@ class CaseApiService @Inject constructor(
     override fun getCaseById(caseId: String): Flow<Case> = flow {
         try {
             val userId = authPreferences.userIdFlow.first()
+
             if (userId == null) {
                 throw IllegalStateException("User not authenticated")
             }
 
             val case = api.get<CaseDto>("cases/$caseId")
+
             emit(case.toDomain())
         } catch (e: Exception) {
             throw e

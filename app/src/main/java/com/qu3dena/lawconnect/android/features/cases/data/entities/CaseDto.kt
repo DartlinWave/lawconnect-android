@@ -1,10 +1,10 @@
 package com.qu3dena.lawconnect.android.features.cases.data.entities
 
+import java.util.UUID
+import java.time.Instant
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.qu3dena.lawconnect.android.features.cases.domain.model.Case
-import java.time.Instant
-import java.util.UUID
 
 data class CaseDto(
     val id: UUID,

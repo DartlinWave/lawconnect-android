@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.qu3dena.lawconnect.android.core.navigation.Graph
+import com.qu3dena.lawconnect.android.shared.navigation.SharedScreen
 
 /**
  * Model representing bottom bar screen items.
@@ -26,7 +27,7 @@ sealed class BottomBarScreen(
     )
 
     object Clients : BottomBarScreen(
-        route = Graph.Clients.route,
+        route = SharedScreen.Clients.route,
         title = "Clients",
         icon = Icons.Default.Face
     )

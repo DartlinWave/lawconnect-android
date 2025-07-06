@@ -1,7 +1,7 @@
 package com.qu3dena.lawconnect.android.features.cases.data.entities
 
-import com.qu3dena.lawconnect.android.features.cases.domain.model.InvitedCase
 import java.util.UUID
+import com.qu3dena.lawconnect.android.features.cases.domain.model.InvitedCase
 
 data class InvitedCaseDto(
     val id: Long,

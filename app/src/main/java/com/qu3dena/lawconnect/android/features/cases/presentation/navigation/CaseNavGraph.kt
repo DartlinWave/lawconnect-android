@@ -1,19 +1,16 @@
 package com.qu3dena.lawconnect.android.features.cases.presentation.navigation
 
+import androidx.navigation.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
+import androidx.navigation.navArgument
+import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CaseClientsView
+
+import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
 import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CasesView
 import com.qu3dena.lawconnect.android.features.cases.presentation.ui.screens.CaseDetailView
-import com.qu3dena.lawconnect.android.shared.contracts.FeatureNavGraph
-
-sealed class CaseScreen(val route: String) {
-    object Main : CaseScreen("case_main")
-    object Detail : CaseScreen("case_detail/{caseId}") {
-        fun createRoute(caseId: String) = "case_detail/$caseId"
-    }
-}
 
 class CaseNavGraph : FeatureNavGraph {
 
@@ -28,13 +25,21 @@ class CaseNavGraph : FeatureNavGraph {
         ) {
             composable(route = CaseScreen.Main.route) {
                 CasesView(
-                    onCaseClick = { caseId ->
-                        navController.navigate(CaseScreen.Detail.createRoute(caseId))
+                    onCaseClick = { caseId: String ->
+                        navController.navigate(CaseScreen.Detail.passCaseId(caseId))
                     }
                 )
             }
 
-            composable(route = CaseScreen.Detail.route) { backStackEntry ->
+            composable(
+                route = CaseScreen.Detail.route,
+                arguments = listOf(
+                    navArgument(DETAIL_ARGUMENT_CASE_ID) {
+                        type = NavType.StringType
+                    }
+                )
+
+            ) { backStackEntry ->
                 val caseId = backStackEntry.arguments?.getString("caseId") ?: ""
                 CaseDetailView(
                     caseId = caseId,
@@ -42,6 +47,10 @@ class CaseNavGraph : FeatureNavGraph {
                         navController.popBackStack()
                     }
                 )
+            }
+
+            composable(route = CaseScreen.Clients.route) {
+                CaseClientsView()
             }
         }
     }
