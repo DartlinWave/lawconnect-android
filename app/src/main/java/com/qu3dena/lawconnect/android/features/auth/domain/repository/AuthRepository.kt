@@ -1,5 +1,7 @@
 package com.qu3dena.lawconnect.android.features.auth.domain.repository
 
+import com.qu3dena.lawconnect.android.features.auth.domain.model.LawyerProfileRequest
+import com.qu3dena.lawconnect.android.features.auth.domain.model.LawyerProfileResponse
 import com.qu3dena.lawconnect.android.features.auth.domain.model.SignInResponse
 import com.qu3dena.lawconnect.android.features.auth.domain.model.SignUpResponse
 import kotlinx.coroutines.flow.Flow
@@ -15,4 +17,6 @@ interface AuthRepository {
     fun getToken(): Flow<String?>
 
     fun getUsername(): Flow<String?>
+
+    fun createLawyerProfile(lawyerProfileRequest: LawyerProfileRequest): Flow<LawyerProfileResponse>
 }
